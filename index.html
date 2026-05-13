@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TraderStats — The Hard Numbers Behind Trading</title>
+<meta name="description" content="Win rates, drawdowns, costs, and the math of risk for traders." />
+<style>
+  :root{--bg:#070b14;--panel:#0e1626;--panel2:#11192c;--border:#1e2a45;--text:#eaf0fb;--muted:#8ea0bd;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--violet:#a855f7;--blue:#3b82f6;--cyan:#22d3ee}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:radial-gradient(1100px 600px at 0% -10%,#3a1620 0%,transparent 55%),radial-gradient(900px 500px at 110% 0%,#0c2747 0%,transparent 55%),var(--bg);color:var(--text);font:15px/1.55 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+  .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#ff7849,#a855f7);box-shadow:0 6px 24px rgba(255,120,73,.35)}
+  .nav small{color:var(--muted);font-weight:500}
+  h1{font-size:42px;line-height:1.05;margin:8px 0 10px;letter-spacing:-.6px}
+  .lede{color:var(--muted);max-width:780px;margin:0 0 28px}
+  .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:32px}
+  .kpi{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:14px;padding:18px}
+  .kpi .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+  .kpi .val{font-size:28px;font-weight:800;margin-top:6px}
+  .kpi .sub{color:var(--muted);font-size:12px;margin-top:6px}
+  .kpi.green .val{color:var(--green)} .kpi.red .val{color:var(--red)} .kpi.amber .val{color:var(--amber)} .kpi.violet .val{color:var(--violet)}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .15s ease,border-color .15s ease}
+  .card:hover{transform:translateY(-2px);border-color:#2c3b5f}
+  .card h3{margin:0 0 6px;font-size:16px;display:flex;align-items:center;gap:8px}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .card p{margin:0;color:var(--muted)}
+  .section-title{margin:36px 0 14px;font-size:13px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+  footer{margin-top:50px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);padding-top:18px}
+  @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.grid,.kpis{grid-template-columns:1fr}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav">
+    <div class="brand"><span class="logo"></span> TraderStats <small>by scheplick</small></div>
+    <small>Updated May 2026</small>
+  </div>
+  <h1>The hard numbers behind trading.</h1>
+  <p class="lede">Most traders lose because they don't respect the math. This is the dashboard of the uncomfortable statistics that actually drive outcomes — win rates, drawdowns, fees, and behavior.</p>
+  <div class="kpis">
+    <div class="kpi red"><div class="lbl">Day traders who lose money</div><div class="val">~70%</div><div class="sub">Across multi-year studies</div></div>
+    <div class="kpi amber"><div class="lbl">Consistently profitable 5+ yrs</div><div class="val">~1%</div><div class="sub">Of active retail day traders</div></div>
+    <div class="kpi violet"><div class="lbl">Active funds beating S&P over 15y</div><div class="val">~15%</div><div class="sub">SPIVA, net of fees</div></div>
+    <div class="kpi green"><div class="lbl">US equity volume from algos</div><div class="val">~90%</div><div class="sub">HFT and systematic</div></div>
+  </div>
+  <div class="section-title">The math of risk</div>
+  <div class="grid">
+    <div class="card"><h3><span class="dot" style="background:#ef4444"></span>Drawdown asymmetry</h3><p>A 50% loss requires a 100% gain to recover. A 20% loss only needs +25%. Position sizing is everything.</p></div>
+    <div class="card"><h3><span class="dot" style="background:#f59e0b"></span>Kelly is brutal</h3><p>Full Kelly sizing produces a ~50% drawdown in the average path. Most pros use half-Kelly or less.</p></div>
+    <div class="card"><h3><span class="dot" style="background:#22d3ee"></span>Edge erodes fast</h3><p>Average alpha decay for a published equity factor is ~58% post-publication.</p></div>
+  </div>
+  <div class="section-title">Volatility and tape</div>
+  <div class="grid">
+    <div class="card"><h3><span class="dot" style="background:#3b82f6"></span>Big days cluster</h3><p>Missing the 10 best days in the S&P 500 over 20 years cuts your return roughly in half. Most occur within two weeks of the 10 worst days.</p></div>
+    <div class="card"><h3><span class="dot" style="background:#a855f7"></span>Intraday is noise</h3><p>Roughly 80% of S&P 500 single-day moves above 1% mean-revert within five trading days.</p></div>
+    <div class="card"><h3><span class="dot" style="background:#22c55e"></span>September drag</h3><p>September is the only month with a negative average S&P 500 return since 1950 (-0.7%).</p></div>
+  </div>
+  <div class="section-title">Costs that quietly kill returns</div>
+  <div class="grid">
+    <div class="card"><h3><span class="dot" style="background:#ef4444"></span>Bid-ask drag</h3><p>Active small-cap traders can pay 1-3% per round-trip in spread plus impact — wiping out most edges.</p></div>
+    <div class="card"><h3><span class="dot" style="background:#f59e0b"></span>Tax friction</h3><p>Short-term gains are taxed as ordinary income. Holding more than 1 year can save 10-20 points of after-tax return.</p></div>
+    <div class="card"><h3><span class="dot" style="background:#22d3ee"></span>Margin interest</h3><p>At 8% margin rates, a leveraged long needs to earn ~12% gross just to clear a 4% hurdle.</p></div>
+  </div>
+  <div class="section-title">Behavior beats brilliance</div>
+  <div class="grid">
+    <div class="card"><h3><span class="dot" style="background:#a855f7"></span>Overconfidence tax</h3><p>The most active 20% of retail accounts underperform buy-and-hold by ~6% per year (Barber and Odean).</p></div>
+    <div class="card"><h3><span class="dot" style="background:#22c55e"></span>Time in beats timing</h3><p>$10,000 in the S&P 500 from 2003 to 2023 grew to ~$64k if held; ~$29k if you missed the 10 best days.</p></div>
+    <div class="card"><h3><span class="dot" style="background:#3b82f6"></span>Process beats prediction</h3><p>Top systematic funds have win rates of 50-55%. The edge is in payoff asymmetry and discipline.</p></div>
+  </div>
+  <footer>Sources: SPIVA, Barber and Odean (2000), McLean and Pontiff (2016), Hartford Funds, S&P Dow Jones Indices. Educational only — not trading advice.</footer>
+</div>
+</body>
+</html>
