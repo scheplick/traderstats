@@ -1,0 +1,14 @@
+services:
+  web:
+    image: nginx:alpine
+    ports: ["3000:80"]
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    # repo dir is mode 700 in the sandbox; run workers as root so they can read it
+    command: ["sh", "-ec", "sed -i 's/^user .*/user root;/' /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"]
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ | grep -q TraderStats || (echo 'web failed'; exit 1)"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
